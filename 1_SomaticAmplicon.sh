@@ -73,8 +73,7 @@ for fastqPair in $(ls "$sampleId"_S*.fastq.gz | cut -d_ -f1-3 | sort | uniq); do
     read2Fastq=$(ls "$fastqPair"_R2_*fastq.gz)
 
     #trim adapters
-    /share/apps/cutadapt-distros/cutadapt-1.9.1/bin/cutadapt \
-   ?  /python/2.7.11-genomics/cutadapt-1.9.1/bin/cutadapt \  Ask Andrew!
+    /software/tools/pyenv/shims/cutadapt 
     -a "$read1Adapter" \
     -A "$read2Adapter" \
     -m 50 \
