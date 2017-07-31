@@ -287,7 +287,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -dt NONE
 
 #Annotate with low complexity region length using mdust
-/software/genomics/bcftools-1.3.1/bcftools annotate \
+bcftools annotate \
 -a /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.mdust.v34.lpad1.bed.gz \
 -c CHROM,FROM,TO,LCRLen \
 -h <(echo '##INFO=<ID=LCRLen,Number=1,Type=Integer,Description="Overlapping mdust low complexity region length (mask cutoff: 34)">') \
