@@ -391,8 +391,8 @@ variant_effect_predictor.pl \
 --force_overwrite \
 --no_stats \
 --cache \
-??--dir /vep-distros/ensembl-tools-release-86/scripts/variant_effect_predictor/annotations \
-??--fasta /vep-distros/ensembl-tools-release-86/scripts/variant_effect_predictor/annotations \
+--dir /scratch/mcgmm/Matt_pipeline/data/resources \
+--fasta /scratch/mcgmm/Matt_pipeline/data/resources \
 --no_intergenic \
 --offline \
 --cache_version 86 \
