@@ -167,7 +167,7 @@ CREATE_INDEX=true \
 ampliconrealigner.sh \
 -I "$seqId"_"$sampleId"_aligned.bam \
 -O "$seqId"_"$sampleId"_amplicon_realigned.bam \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \ 
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -T /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed
 
 #sort and index BAM
@@ -177,7 +177,7 @@ samtools index "$seqId"_"$sampleId"_amplicon_realigned_sorted.bam
 #left align indels
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T LeftAlignIndels \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -I "$seqId"_"$sampleId"_amplicon_realigned_sorted.bam \
 -o "$seqId"_"$sampleId"_amplicon_realigned_left_sorted.bam \
 -dt NONE
@@ -185,7 +185,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 #Identify regions requiring realignment
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T RealignerTargetCreator \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -known /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/1000G_phase1.indels.b37.vcf \
 -known /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/Mills_and_1000G_gold_standard.indels.b37.vcf \
 -known /scratch/mcgmm/Matt_pipeline/data/db/cosmic/b37/cosmic_78.indels.b37.vcf \
@@ -198,7 +198,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 
 #Realign around indels
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \-T IndelRealigner \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \                       
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \                       
 -known /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/1000G_phase1.indels.b37.vcf \ 
 -known /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/Mills_and_1000G_gold_standard.indels.b37.vcf \
 -known /scratch/mcgmm/Matt_pipeline/data/db/human/cosmic/b37/cosmic_78.indels.b37.vcf \
@@ -269,7 +269,7 @@ rm name
 #left align and trim variants
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T LeftAlignAndTrimVariants \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -o "$seqId"_"$sampleId"_left_aligned.vcf \
 -V "$seqId"_"$sampleId"_fixed.vcf \
 -L "$panel"_ROI_b37_thick.bed \
@@ -278,7 +278,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 #Annotate with GATK contextual information
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T VariantAnnotator \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -I "$seqId"_"$sampleId".bam \
 -V "$seqId"_"$sampleId"_left_aligned.vcf \
 -L "$panel"_ROI_b37_thick.bed \
@@ -297,7 +297,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 #Filter variants
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T VariantFiltration \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -V "$seqId"_"$sampleId"_lcr.vcf \
 --filterExpression "LCRLen > 8" \
 --filterName "LowComplexity" \
@@ -319,13 +319,13 @@ SD=/scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.dict
 java -Xmx8g -jar /software/genomics/picard/2.7.1/picard.jar CollectHsMetrics \
 I="$seqId"_"$sampleId".bam \
 O="$seqId"_"$sampleId"_hs_metrics.txt \
-R=/scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+R=/scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 BAIT_INTERVALS="$panel"_ROI.interval_list \
 TARGET_INTERVALS="$panel"_ROI.interval_list
 
 #Generate per-base coverage: variant detection sensitivity
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -o "$seqId"_"$sampleId"_DepthOfCoverage \
 -I "$seqId"_"$sampleId".bam \
 -L "$panel"_ROI_b37_thick.bed \
@@ -365,7 +365,7 @@ grep -v '^##' "$seqId"_"$sampleId"_filtered.vcf >> "$seqId"_"$sampleId"_filtered
 #Variant Evaluation
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T VariantEval \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -o "$seqId"_"$sampleId"_variant_evaluation.txt \
 --eval:"$seqId"_"$sampleId" "$seqId"_"$sampleId"_filtered_meta.vcf \
 --comp:omni2.5 /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/1000G_omni2.5.b37.vcf \
@@ -410,7 +410,7 @@ fi
 #index & validate final VCF
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T ValidateVariants \
--R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \          
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \          
 -V "$seqId"_"$sampleId"_filtered_meta_annotated.vcf \
 -dt NONE
 
@@ -427,7 +427,7 @@ if [ -d /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmpli
         #generate per-base coverage
         java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
         -T DepthOfCoverage \
-        -R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+        -R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
         -o "$seqId"_"$sampleId"_"$target" \
         -I "$seqId"_"$sampleId".bam \
         -L "$bedFile" \
@@ -472,7 +472,7 @@ fi
         #select variants
         java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
         -T VariantFiltration \
-        -R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
+        -R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
         -V "$seqId"_"$sampleId"_filtered_meta_annotated.vcf \
         -L "$bedFile" \
         -o hotspot_variants/"$seqId"_"$sampleId"_"$target"_filtered_meta_annotated.vcf \
