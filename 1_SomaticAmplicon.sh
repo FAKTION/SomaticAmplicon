@@ -239,12 +239,11 @@ ln -s "$seqId"_"$sampleId".bai "$seqId"_"$sampleId".bam.bai
 #extract thick regions
 awk '{print $1"\t"$7"\t"$8}' /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed | \
 bedtools merge > "$panel"_ROI_b37_thick.bed
-bedtools merge > "$panel"_ROI_b37_thick.bed
 
 #Call somatic variants
 mono /scratch/mcgmm/Matt_pipeline/data/db/MiSeqReporter-2.6.3/CallSomaticVariants.exe \
 -B ./"$seqId"_"$sampleId".bam \
--g /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37 \
+-g /scratch/mcgmm/Matt_pipeline/data/db \
 -f 0.01 \
 -fo False \
 -b 20 \
