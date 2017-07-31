@@ -325,6 +325,7 @@ TARGET_INTERVALS="$panel"_ROI.interval_list
 
 #Generate per-base coverage: variant detection sensitivity
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
+-T DepthOfCoverage \
 -R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -o "$seqId"_"$sampleId"_DepthOfCoverage \
 -I "$seqId"_"$sampleId".bam \
