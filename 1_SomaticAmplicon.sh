@@ -136,8 +136,8 @@ I="$seqId"_"$sampleId"_unaligned.bam \
 FASTQ=/dev/stdout \
 NON_PF=true \
 MAX_RECORDS_IN_RAM=2000000 \
-VALIDATION_STRINGENCY=SILENT \
-/software/genomics/bwa-0.7.15/bwa mem \     
+VALIDATION_STRINGENCY=SILENT | \
+bwa mem \
 -M \
 -t 12 \
 -p \
