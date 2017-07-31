@@ -201,7 +201,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \-T IndelReal
 -R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \                       
 -known /scratch/mcgmm/Matt_pipeline/data/db/1000G_phase1.indels.b37.vcf \ 
 -known /scratch/mcgmm/Matt_pipeline/data/db/Mills_and_1000G_gold_standard.indels.b37.vcf \
--known /scratch/mcgmm/Matt_pipeline/data/db/human/cosmic/b37/cosmic_78.indels.b37.vcf \
+-known /scratch/mcgmm/Matt_pipeline/data/db/cosmic_78.indels.b37.vcf \
 -targetIntervals "$seqId"_"$sampleId"_indel_realigned.intervals \
 --maxReadsForRealignment 500000 \
 --maxConsensuses 750 \
