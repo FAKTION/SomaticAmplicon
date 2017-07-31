@@ -371,7 +371,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 --eval:"$seqId"_"$sampleId" "$seqId"_"$sampleId"_filtered_meta.vcf \
 --comp:omni2.5 /scratch/mcgmm/Matt_pipeline/data/db/1000G_omni2.5.b37.vcf \
 --comp:hapmap3.3 /scratch/mcgmm/Matt_pipeline/data/db/hapmap_3.3.b37.vcf \
---comp:cosmic78 /scratch/mcgmm/Matt_pipeline/data/db/cosmic/b37/cosmic_78.b37.vcf \
+--comp:cosmic78 /scratch/mcgmm/Matt_pipeline/data/db/cosmic_78.b37.vcf \
 -L "$panel"_ROI_b37_thick.bed \
 -nt 12 \
 -dt NONE
