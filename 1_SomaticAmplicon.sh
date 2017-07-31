@@ -244,7 +244,7 @@ bedtools merge > "$panel"_ROI_b37_thick.bed
 #Call somatic variants
 mono /scratch/mcgmm/Matt_pipeline/data/db/MiSeqReporter-2.6.3/CallSomaticVariants.exe \
 -B ./"$seqId"_"$sampleId".bam \
--g /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37 \    
+-g /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37 \
 -f 0.01 \
 -fo False \
 -b 20 \
@@ -289,7 +289,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 
 #Annotate with low complexity region length using mdust
 /software/genomics/bcftools-1.3.1/bcftools annotate \
--a /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.mdust.v34.lpad1.bed.gz \  
+-a /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.mdust.v34.lpad1.bed.gz \
 -c CHROM,FROM,TO,LCRLen \
 -h <(echo '##INFO=<ID=LCRLen,Number=1,Type=Integer,Description="Overlapping mdust low complexity region length (mask cutoff: 34)">') \
 -o "$seqId"_"$sampleId"_lcr.vcf \
@@ -411,7 +411,7 @@ fi
 #index & validate final VCF
 java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -T ValidateVariants \
--R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \          
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -V "$seqId"_"$sampleId"_filtered_meta_annotated.vcf \
 -dt NONE
 
