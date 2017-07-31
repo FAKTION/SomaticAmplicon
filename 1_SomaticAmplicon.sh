@@ -342,7 +342,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 java -Xmx8g -jar /scratch/mcgmm/Matt_pipeline/data/db/CoverageCalculator-2.0.2/CoverageCalculator.jar \
 "$seqId"_"$sampleId"_DepthOfCoverage \
 /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_genes.txt \
-/scratch/mcgmm/Matt_pipeline/data/db/refseq/ref_GRCh37.p13_top_level.gff3 \
+/scratch/mcgmm/Matt_pipeline/data/db/ref_GRCh37.p13_top_level.gff3 \
 -p5 \
 -d"$minimumCoverage" \
 > "$seqId"_"$sampleId"_PercentageCoverage.txt
