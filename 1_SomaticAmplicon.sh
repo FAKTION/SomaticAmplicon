@@ -240,9 +240,6 @@ awk '{print $1"\t"$7"\t"$8}' /data/pipelines/SomaticAmplicon/SomaticAmplicon-"$v
 bedtools merge > "$panel"_ROI_b37_thick.bed
 bedtools merge > "$panel"_ROI_b37_thick.bed
 
-#load mono
-. /opt/mono/env.sh
-
 #Call somatic variants
 mono /scratch/mcgmm/Matt_pipeline/data/db/MiSeqReporter-2.6.3/CallSomaticVariants.exe \
 -B ./"$seqId"_"$sampleId".bam \
