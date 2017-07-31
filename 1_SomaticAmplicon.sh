@@ -168,7 +168,7 @@ ampliconrealigner.sh \
 -I "$seqId"_"$sampleId"_aligned.bam \
 -O "$seqId"_"$sampleId"_amplicon_realigned.bam \
 -R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
--T /scratch/mcgmm/Matt_pipeline/scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed
+-T /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed
 
 #sort and index BAM
 samtools sort -@8 -m8G -o "$seqId"_"$sampleId"_amplicon_realigned_sorted.bam "$seqId"_"$sampleId"_amplicon_realigned.bam
@@ -191,7 +191,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -known /scratch/mcgmm/Matt_pipeline/data/db/cosmic_78.indels.b37.vcf \
 -I "$seqId"_"$sampleId"_amplicon_realigned_left_sorted.bam \
 -o "$seqId"_"$sampleId"_indel_realigned.intervals \
--L /scratch/mcgmm/Matt_pipeline/scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed \
+-L /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed \
 -ip "$padding" \
 -nt 12 \
 -dt NONE
