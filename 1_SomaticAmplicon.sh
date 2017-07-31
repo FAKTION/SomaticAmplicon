@@ -492,7 +492,7 @@ fi
 fi
 
 #write full dataset to table
-vcfparse.sh 
+vcfparse.sh \
 -V "$seqId"_"$sampleId"_filtered_meta_annotated.vcf \
 -T /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_PreferredTranscripts.txt \
 -C /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_KnownVariants.vcf \
