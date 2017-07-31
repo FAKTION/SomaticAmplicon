@@ -7,7 +7,7 @@
 #PBS -l walltime=20:00:00
 #PBS -l select=1:ncpus=12
 set -euo pipefail
-cd $PBS_O_WORKDIR
+#cd $PBS_O_WORKDIR
 
 #Description: Somatic Amplicon Pipeline (Illumina paired-end). Not for use with other library preps/ experimental conditions.
 #Author: Matt Lyon, All Wales Medical Genetics Lab
@@ -197,9 +197,10 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -dt NONE
 
 #Realign around indels
-java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \-T IndelRealigner \
--R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \                       
--known /scratch/mcgmm/Matt_pipeline/data/db/1000G_phase1.indels.b37.vcf \ 
+java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
+-T IndelRealigner \
+-R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
+-known /scratch/mcgmm/Matt_pipeline/data/db/1000G_phase1.indels.b37.vcf \
 -known /scratch/mcgmm/Matt_pipeline/data/db/Mills_and_1000G_gold_standard.indels.b37.vcf \
 -known /scratch/mcgmm/Matt_pipeline/data/db/cosmic_78.indels.b37.vcf \
 -targetIntervals "$seqId"_"$sampleId"_indel_realigned.intervals \
