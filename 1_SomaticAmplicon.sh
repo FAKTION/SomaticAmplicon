@@ -288,7 +288,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 
 #Annotate with low complexity region length using mdust
 /software/genomics/bcftools-1.3.1/bcftools annotate \
--a /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.mdust.v34.lpad1.bed.gz \
+-a /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.mdust.v34.lpad1.bed.gz \
 -c CHROM,FROM,TO,LCRLen \
 -h <(echo '##INFO=<ID=LCRLen,Number=1,Type=Integer,Description="Overlapping mdust low complexity region length (mask cutoff: 34)">') \
 -o "$seqId"_"$sampleId"_lcr.vcf \
@@ -313,7 +313,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 java -Xmx8g -jar /software/genomics/picard/2.7.1/picard.jar BedToIntervalList \
 I="$panel"_ROI_b37_thick.bed \
 O="$panel"_ROI.interval_list \
-SD=/scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.dict  
+SD=/scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.dict  
 
 #HsMetrics: capture & pooling performance
 java -Xmx8g -jar /software/genomics/picard/2.7.1/picard.jar CollectHsMetrics \
@@ -368,8 +368,8 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 -R /scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 -o "$seqId"_"$sampleId"_variant_evaluation.txt \
 --eval:"$seqId"_"$sampleId" "$seqId"_"$sampleId"_filtered_meta.vcf \
---comp:omni2.5 /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/1000G_omni2.5.b37.vcf \
---comp:hapmap3.3 /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/hapmap_3.3.b37.vcf \
+--comp:omni2.5 /scratch/mcgmm/Matt_pipeline/data/db/1000G_omni2.5.b37.vcf \
+--comp:hapmap3.3 /scratch/mcgmm/Matt_pipeline/data/db/hapmap_3.3.b37.vcf \
 --comp:cosmic78 /scratch/mcgmm/Matt_pipeline/data/db/cosmic/b37/cosmic_78.b37.vcf \
 -L "$panel"_ROI_b37_thick.bed \
 -nt 12 \
