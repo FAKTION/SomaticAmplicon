@@ -164,7 +164,7 @@ INCLUDE_SECONDARY_ALIGNMENTS=true \
 CREATE_INDEX=true \
 
 #Realign soft clipped bases
-ampliconrealigner.sh
+ampliconrealigner.sh \
 -I "$seqId"_"$sampleId"_aligned.bam \
 -O "$seqId"_"$sampleId"_amplicon_realigned.bam \
 -R /scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \ 
