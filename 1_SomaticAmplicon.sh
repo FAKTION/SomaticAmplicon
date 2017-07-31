@@ -213,7 +213,7 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \-T IndelReal
 -dt NONE
 
 #soft clip PCR primers
-softclip.sh
+softclip.sh \
 -I "$seqId"_"$sampleId"_indel_realigned.bam \
 -O "$seqId"_"$sampleId"_clipped.bam \
 -T /data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel"_ROI_b37.bed
