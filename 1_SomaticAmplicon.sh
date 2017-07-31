@@ -92,7 +92,7 @@ for fastqPair in $(ls "$sampleId"_S*.fastq.gz | cut -d_ -f1-3 | sort | uniq); do
     -j 12
 
     #convert fastq to ubam
-    java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar FastqToSam \
+    java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar FastqToSam \
     F1="$seqId"_"$sampleId"_"$laneId"_merged.fastq.assembled.fastq \
     O="$seqId"_"$sampleId"_"$laneId"_unaligned.bam \
     QUALITY_FORMAT=Standard \
@@ -121,7 +121,7 @@ for fastqPair in $(ls "$sampleId"_S*.fastq.gz | cut -d_ -f1-3 | sort | uniq); do
 done
 
 #merge lane bams
-java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar MergeSamFiles \
+java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar MergeSamFiles \
 $(ls "$seqId"_"$sampleId"_*_unaligned.bam | sed 's/^/I=/' | tr '\n' ' ') \
 SORT_ORDER=queryname \
 ASSUME_SORTED=true \
@@ -131,7 +131,7 @@ MAX_RECORDS_IN_RAM=2000000 \
 O="$seqId"_"$sampleId"_unaligned.bam
 
 #uBam2fq, map & MergeBamAlignment
-java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar SamToFastq \
+java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar SamToFastq \
 I="$seqId"_"$sampleId"_unaligned.bam \
 FASTQ=/dev/stdout \
 NON_PF=true \
@@ -143,7 +143,7 @@ VALIDATION_STRINGENCY=SILENT \
 -p \
 /scratch/mcgmm/Matt_pipeline/data/db/b37/bwa/human_g1k_v37.fasta \
 /dev/stdin | \
-java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar MergeBamAlignment \
+java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar MergeBamAlignment \
 ATTRIBUTES_TO_RETAIN=X0 \
 ALIGNED_BAM=/dev/stdin \
 UNMAPPED_BAM="$seqId"_"$sampleId"_unaligned.bam \
@@ -223,7 +223,7 @@ samtools sort -@8 -m8G -o "$seqId"_"$sampleId"_clipped_sorted.bam "$seqId"_"$sam
 samtools index "$seqId"_"$sampleId"_clipped_sorted.bam
 
 #fix bam tags
-java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar SetNmMdAndUqTags \
+java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar SetNmMdAndUqTags \
 I="$seqId"_"$sampleId"_clipped_sorted.bam \
 O="$seqId"_"$sampleId".bam \
 CREATE_INDEX=true \
@@ -313,13 +313,13 @@ java -Xmx40g -jar /software/genomics/GATK/3.7/GenomeAnalysisTK.jar \
 ### QC ###
 
 #Convert BED to interval_list for later
-java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar BedToIntervalList \
+java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar BedToIntervalList \
 I="$panel"_ROI_b37_thick.bed \
 O="$panel"_ROI.interval_list \
 SD=/scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.dict  
 
 #HsMetrics: capture & pooling performance
-java -Xmx8g -jar /software/genomics/picard-tools-2.8.2/picard.jar CollectHsMetrics \
+java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar CollectHsMetrics \
 I="$seqId"_"$sampleId".bam \
 O="$seqId"_"$sampleId"_hs_metrics.txt \
 R=/scratch/mcgmm/Matt_pipeline/data/db/gatk/2.8/b37/human_g1k_v37.fasta \
