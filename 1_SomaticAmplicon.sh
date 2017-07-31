@@ -107,8 +107,8 @@ for fastqPair in $(ls "$sampleId"_S*.fastq.gz | cut -d_ -f1-3 | sort | uniq); do
     MAX_RECORDS_IN_RAM=2000000 \
 
     #fastqc
-    fastqc -d --threads 12 --extract "$seqId"_"$sampleId"_"$laneId"_R1.fastq
-    fastqc -d --threads 12 --extract "$seqId"_"$sampleId"_"$laneId"_R2.fastq
+    fastqc --threads 12 --extract "$seqId"_"$sampleId"_"$laneId"_R1.fastq
+    fastqc --threads 12 --extract "$seqId"_"$sampleId"_"$laneId"_R2.fastq
 
     #check FASTQC output
     if [ $(countQCFlagFails "$seqId"_"$sampleId"_"$laneId"_R1_fastqc/summary.txt) -gt 0 ] || [ $(countQCFlagFails "$seqId"_"$sampleId"_"$laneId"_R2_fastqc/summary.txt) -gt 0 ]; then
