@@ -5,34 +5,32 @@
 #PBS -q workq_wgp
 #PBS -P PR403
 #PBS -l walltime=20:00:00
-#PBS -l ncpus=1
+#PBS -l select=1:ncpus=12
 set -euo pipefail
-PBS_O_WORKDIR=(`echo $PBS_O_WORKDIR | sed "s/^\/state\/partition1//" `)
 cd $PBS_O_WORKDIR
 
 #Description: Somatic Amplicon Pipeline (Illumina paired-end). Not for use with other library preps/ experimental conditions.
 #Author: Matt Lyon, All Wales Medical Genetics Lab
 #Mode: BY_SAMPLE
 version="1.6.2"
- 
+
 # Load Modules
 module load python/2.7.11-genomics
-module load fastqc
-module load java
+module load fastqc/0.11.2
+module load java/1.8.0_45
 module load GATK/3.7
 module load picard/2.7.1
-module load BWA/0.7.15	
+module load BWA/0.7.15
 module load ampliconrealigner/1.1.1
 module load samtools/1.3.1
-module load mono/4.4.1		 		
+module load mono/4.4.1
 module load softclippcrprimer/1.1.0
-module load Active Perl/5.18
-module load pear/0.9.10			
+module load ActivePerl/5.18
+module load pear/0.9.10
 module load bedtools/2.26.0
 module load vcfparse/1.2.5
 module load ensemble_tools/86
 module load bcftools/1.2
-
 
 # Directory structure required for pipeline
 #
@@ -61,7 +59,7 @@ countQCFlagFails() {
 
 #load sample & pipeline variables
 . *.variables
-. /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$1.6.2"/"$NGXS-001X"/"$NGXS-001X".variables
+. /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel".variables
 
 ### Preprocessing ###
 
