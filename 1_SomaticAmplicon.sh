@@ -141,14 +141,14 @@ bwa mem \
 -M \
 -t 12 \
 -p \
-/scratch/mcgmm/Matt_pipeline/data/db/b37/bwa/human_g1k_v37.fasta \
+/scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 /dev/stdin | \
 java -Xmx8g -jar /software/genomics/picard-tools-2.7.1/picard.jar MergeBamAlignment \
 ATTRIBUTES_TO_RETAIN=X0 \
 ALIGNED_BAM=/dev/stdin \
 UNMAPPED_BAM="$seqId"_"$sampleId"_unaligned.bam \
 OUTPUT="$seqId"_"$sampleId"_aligned.bam \
-R=/scratch/mcgmm/Matt_pipeline/data/db/b37/bwa/human_g1k_v37.fasta \
+R=/scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta \
 PAIRED_RUN=false \
 SORT_ORDER="coordinate" \
 IS_BISULFITE_SEQUENCE=false \
@@ -228,7 +228,7 @@ I="$seqId"_"$sampleId"_clipped_sorted.bam \
 O="$seqId"_"$sampleId".bam \
 CREATE_INDEX=true \
 IS_BISULFITE_SEQUENCE=false \
-R=/scratch/mcgmm/Matt_pipeline/data/db/b37/bwa/human_g1k_v37.fasta
+R=/scratch/mcgmm/Matt_pipeline/data/db/human_g1k_v37.fasta
 
 ### Variant calling ###
 
