@@ -29,6 +29,7 @@ module load ActivePerl/5.18
 module load pear/0.9.10
 module load bedtools/2.26.0
 module load vcfparse/1.2.5
+module load ensembl-vep/89.6
 module load ensemble_tools/86
 module load bcftools/1.2
 
