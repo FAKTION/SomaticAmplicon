@@ -7,7 +7,7 @@
 #PBS -l walltime=20:00:00
 #PBS -l select=1:ncpus=12
 set -euo pipefail
-#cd $PBS_O_WORKDIR
+cd $PBS_O_WORKDIR
 
 #Description: Somatic Amplicon Pipeline (Illumina paired-end). Not for use with other library preps/ experimental conditions.
 #Author: Matt Lyon, All Wales Medical Genetics Lab
