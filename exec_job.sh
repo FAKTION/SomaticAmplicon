@@ -1,0 +1,1 @@
+find -mindepth 1 -maxdepth 1 -type d -exec bash -c "cd {} && cp script.sh && qsub script.sh" \;
