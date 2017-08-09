@@ -32,6 +32,7 @@ module load vcfparse/1.2.5
 module load ensembl-vep/89.6
 module load ensemble_tools/86
 module load bcftools/1.2
+module load htslib/1.2.1
 
 # Directory structure required for pipeline
 #
