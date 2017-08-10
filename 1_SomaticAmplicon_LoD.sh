@@ -163,8 +163,8 @@ for p in 0.75 0.5 0.25 0.125; do
     
     #tabix index the per-base coverage file
     awk -F'[\t|:]' '{if(NR>1) print $1"\t"$2"\t"$3}' "$seqId"_"$sampleId"_DepthOfCoverage | \
-    /software/genomics/htslib-1.2.1/bgzip > "$seqId"_"$sampleId"_DepthOfCoverage.gz
-    /software/genomics//htslib-1.2.1/tabix -b2 -e2 -s1 "$seqId"_"$sampleId"_DepthOfCoverage.gz
+    /software/genomics/htslib/1.2.1/gnu-4.4.7/bin/bgzip > "$seqId"_"$sampleId"_DepthOfCoverage.gz
+    /software/genomics/htslib/1.2.1/gnu-4.4.7/bin/tabix -b2 -e2 -s1 "$seqId"_"$sampleId"_DepthOfCoverage.gz
 
     #move to root folder
     cd ..
