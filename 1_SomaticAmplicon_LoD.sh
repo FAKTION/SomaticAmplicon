@@ -55,7 +55,7 @@ module load htslib/1.2.1
 . /scratch/mcgmm/Matt_pipeline/data/pipelines/SomaticAmplicon/SomaticAmplicon-"$version"/"$panel"/"$panel".variables
 
 #downsample BAM to p
-for p in 0.75 0.5 0.25 0.125; do
+for p in 0.9 0.75 0.6 0.5 0.4 0.25 0.125 0.0625 0.01; do
 
     #make folder for dowsampled analysis
     mkdir "$p"
