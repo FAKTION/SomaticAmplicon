@@ -245,9 +245,9 @@ bedtools merge > "$panel"_ROI_b37_thick.bed
 mono /scratch/mcgmm/Matt_pipeline/data/db/MiSeqReporter-2.6.3/CallSomaticVariants.exe \
 -B ./"$seqId"_"$sampleId".bam \
 -g /scratch/mcgmm/Matt_pipeline/data/db \
--f 0.01 \
+-f 0.00794 \
 -fo False \
--b 20 \
+-b 21 \
 -q 100 \
 -c 50 \
 -s 0.5 \

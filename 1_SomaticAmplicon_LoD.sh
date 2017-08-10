@@ -83,9 +83,9 @@ for p in 0.75 0.5 0.25 0.125; do
     mono /scratch/mcgmm/Matt_pipeline/data/db/MiSeqReporter-2.6.3/CallSomaticVariants.exe \
     -B ./"$seqId"_"$sampleId".bam \
     -g /scratch/mcgmm/Matt_pipeline/data/db \
-    -f 0.01 \
+    -f 0.00794 \
     -fo False \
-    -b 20 \
+    -b 21 \
     -q 100 \
     -c 50 \
     -s 0.5 \
