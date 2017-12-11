@@ -12,7 +12,7 @@ cd $PBS_O_WORKDIR
 #Description: Somatic Amplicon Pipeline (Illumina paired-end). Not for use with other library preps/ experimental conditions.
 #Author: Matt Lyon, All Wales Medical Genetics Lab
 #Mode: BY_SAMPLE
-version="1.6.4"
+version="1.6.6"
 
 # Load Modules
 module load python/2.7.11-genomics
